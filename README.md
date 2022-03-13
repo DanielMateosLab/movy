@@ -13,4 +13,10 @@ A service to get the details of your favourite apps.
 
 ## DEVELOPER SET UP
 
-TODO
+### Server
+
+Open a terminal in the `server/` directory and run `npm install && npm run dev`
+
+## TODO
+
+- Finish the project set up (mock data, testing)
