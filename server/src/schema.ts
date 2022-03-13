@@ -5,10 +5,10 @@ export const typeDefs = gql`
     moviesByTitle(title: String!, type: Type, page: Int): MovieSummaryResponse!
   }
 
-  enum Type {
-    EPISODE
-    SERIES
-    MOVIE
+  type MovieSummaryResponse {
+    result: [MovieSummary]!
+    totalResults: Int!
+    page: Int!
   }
 
   type MovieSummary {
@@ -19,9 +19,9 @@ export const typeDefs = gql`
     year: Int!
   }
 
-  type MovieSummaryResponse {
-    result: [MovieSummary]!
-    totalResults: Int!
-    page: Int!
+  enum Type {
+    EPISODE
+    SERIES
+    MOVIE
   }
 `;
