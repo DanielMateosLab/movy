@@ -19,4 +19,4 @@ Open a terminal in the `server/` directory and run `npm install && npm run dev`
 
 ## TODO
 
-- Finish the project set up (mock data, testing)
+- Finish the schema definition with its corresponding mocks
