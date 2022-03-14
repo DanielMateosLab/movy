@@ -5,15 +5,18 @@
   "main": "dist/src/index.js",
   "scripts": {
     "start": "node 'dist/server.js'",
-    "build": "npx tsc",
-    "build:dev": "nodemon 'src/index.ts' --exec 'ts-node' src/index.ts -e ts,graphql",
-    "dev": "npm run build:dev"
+    "build": "tsc",
+    "dev": "nodemon src/index.ts",
+    "test": "jest --detectOpenHandles --watch"
   },
   "keywords": [],
   "author": "Daniel Mateos Labrador",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15",
+    "ts-jest": "^27.1.3",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.2"
   },
