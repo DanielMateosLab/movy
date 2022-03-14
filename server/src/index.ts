@@ -11,6 +11,11 @@ const server = new ApolloServer({
     },
   },
   mocks: {
+    Query: () => ({
+      moviesByTitle: () => ({
+        result: [...new Array(10)],
+      }),
+    }),
     MovieSummary: () => ({
       id: () => "tt0076759",
       poster: () =>
