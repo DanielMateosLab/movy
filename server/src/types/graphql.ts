@@ -14,39 +14,86 @@ export type Scalars = {
   Float: number;
 };
 
-export type MovieSummary = {
-  __typename?: 'MovieSummary';
+/** Author of a complete Track or a Module */
+export type Author = {
+  __typename?: 'Author';
   id: Scalars['ID'];
-  poster: Scalars['String'];
-  title: Scalars['String'];
-  type: Type;
-  year: Scalars['Int'];
+  name: Scalars['String'];
+  photo?: Maybe<Scalars['String']>;
 };
 
-export type MovieSummaryResponse = {
-  __typename?: 'MovieSummaryResponse';
-  page: Scalars['Int'];
-  result: Array<Maybe<MovieSummary>>;
-  totalResults: Scalars['Int'];
+export type IncrementTrackViewsResponse = {
+  __typename?: 'IncrementTrackViewsResponse';
+  /** Similar to HTTP status code, represents the status of the mutation */
+  code: Scalars['Int'];
+  /** Human-readable message for the UI */
+  message: Scalars['String'];
+  /** Indicates whether the mutation was successful */
+  success: Scalars['Boolean'];
+  /** Newly updated track after a successful mutation */
+  track?: Maybe<Track>;
+};
+
+/** A Module is a single unit of teaching. Multiple Modules compose a Track */
+export type Module = {
+  __typename?: 'Module';
+  /** The module's video duration, in seconds */
+  durationInSeconds?: Maybe<Scalars['Int']>;
+  id: Scalars['ID'];
+  /**
+   * The Module's length in minutes
+   * @deprecated Use durationInSeconds
+   */
+  length?: Maybe<Scalars['Int']>;
+  /** The Module's title */
+  title: Scalars['String'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  incrementTrackViews: IncrementTrackViewsResponse;
+};
+
+
+export type MutationIncrementTrackViewsArgs = {
+  id: Scalars['ID'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  moviesByTitle: MovieSummaryResponse;
+  track?: Maybe<Track>;
+  /** Get tracks array for homepage grid */
+  tracksForHome: Array<Track>;
 };
 
 
-export type QueryMoviesByTitleArgs = {
-  page?: InputMaybe<Scalars['Int']>;
+export type QueryTrackArgs = {
+  id: Scalars['ID'];
+};
+
+/** A track is a group of Modules that teaches about a specific topic */
+export type Track = {
+  __typename?: 'Track';
+  author: Author;
+  /** The track's complete description, can be in Markdown format */
+  description?: Maybe<Scalars['String']>;
+  /** The track's full duration, in seconds */
+  durationInSeconds?: Maybe<Scalars['Int']>;
+  id: Scalars['ID'];
+  /**
+   * The track's approximate length to complete, in seconds
+   * @deprecated Use durationInSeconds
+   */
+  length?: Maybe<Scalars['Int']>;
+  /** The track's complete array of Modules */
+  modules: Array<Module>;
+  modulesCount?: Maybe<Scalars['Int']>;
+  /** The number of times a track has been viewed */
+  numberOfViews?: Maybe<Scalars['Int']>;
+  /** Thumbail image url */
+  thumbnail?: Maybe<Scalars['String']>;
   title: Scalars['String'];
-  type?: InputMaybe<Type>;
 };
-
-export enum Type {
-  Episode = 'EPISODE',
-  Movie = 'MOVIE',
-  Series = 'SERIES'
-}
 
 
 
@@ -117,50 +164,84 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Author: ResolverTypeWrapper<Author>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
+  IncrementTrackViewsResponse: ResolverTypeWrapper<IncrementTrackViewsResponse>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
-  MovieSummary: ResolverTypeWrapper<MovieSummary>;
-  MovieSummaryResponse: ResolverTypeWrapper<MovieSummaryResponse>;
+  Module: ResolverTypeWrapper<Module>;
+  Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
-  Type: Type;
+  Track: ResolverTypeWrapper<Track>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Author: Author;
   Boolean: Scalars['Boolean'];
   ID: Scalars['ID'];
+  IncrementTrackViewsResponse: IncrementTrackViewsResponse;
   Int: Scalars['Int'];
-  MovieSummary: MovieSummary;
-  MovieSummaryResponse: MovieSummaryResponse;
+  Module: Module;
+  Mutation: {};
   Query: {};
   String: Scalars['String'];
+  Track: Track;
 };
 
-export type MovieSummaryResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieSummary'] = ResolversParentTypes['MovieSummary']> = {
+export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  poster?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  type?: Resolver<ResolversTypes['Type'], ParentType, ContextType>;
-  year?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  photo?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type MovieSummaryResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['MovieSummaryResponse'] = ResolversParentTypes['MovieSummaryResponse']> = {
-  page?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  result?: Resolver<Array<Maybe<ResolversTypes['MovieSummary']>>, ParentType, ContextType>;
-  totalResults?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+export type IncrementTrackViewsResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['IncrementTrackViewsResponse'] = ResolversParentTypes['IncrementTrackViewsResponse']> = {
+  code?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  success?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  track?: Resolver<Maybe<ResolversTypes['Track']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ModuleResolvers<ContextType = any, ParentType extends ResolversParentTypes['Module'] = ResolversParentTypes['Module']> = {
+  durationInSeconds?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  length?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  incrementTrackViews?: Resolver<ResolversTypes['IncrementTrackViewsResponse'], ParentType, ContextType, RequireFields<MutationIncrementTrackViewsArgs, 'id'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  moviesByTitle?: Resolver<ResolversTypes['MovieSummaryResponse'], ParentType, ContextType, RequireFields<QueryMoviesByTitleArgs, 'title'>>;
+  track?: Resolver<Maybe<ResolversTypes['Track']>, ParentType, ContextType, RequireFields<QueryTrackArgs, 'id'>>;
+  tracksForHome?: Resolver<Array<ResolversTypes['Track']>, ParentType, ContextType>;
+};
+
+export type TrackResolvers<ContextType = any, ParentType extends ResolversParentTypes['Track'] = ResolversParentTypes['Track']> = {
+  author?: Resolver<ResolversTypes['Author'], ParentType, ContextType>;
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  durationInSeconds?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  length?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  modules?: Resolver<Array<ResolversTypes['Module']>, ParentType, ContextType>;
+  modulesCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  numberOfViews?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
-  MovieSummary?: MovieSummaryResolvers<ContextType>;
-  MovieSummaryResponse?: MovieSummaryResponseResolvers<ContextType>;
+  Author?: AuthorResolvers<ContextType>;
+  IncrementTrackViewsResponse?: IncrementTrackViewsResponseResolvers<ContextType>;
+  Module?: ModuleResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Track?: TrackResolvers<ContextType>;
 };
 
