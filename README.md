@@ -19,4 +19,4 @@ Open a terminal in the `server/` directory and run `npm install && npm run dev`
 
 ## TODO
 
-- Finish the schema definition with its corresponding mocks
+- Add the OMDb api datasource and use it in the resolvers
