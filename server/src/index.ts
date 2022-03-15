@@ -4,13 +4,14 @@ import mocks from "./mocks";
 import resolvers from "./resolvers";
 import { typeDefs } from "./schema";
 import checkConfigVars from "./config";
+import { dataSources } from "./datasources";
 
 checkConfigVars();
 
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
-  mocks,
+  dataSources,
 });
 
 const port = process.env.PORT || 4000;
