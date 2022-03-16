@@ -1,3 +1,5 @@
+// TODO: Update types of showsByTitle Query and datasources
+// @ts-nocheck
 import { DataSources } from "./types";
 import { Resolvers } from "./types/graphql";
 

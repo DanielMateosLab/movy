@@ -2,7 +2,7 @@ import { dataSources } from "../datasources";
 
 export type DataSources = ReturnType<typeof dataSources>;
 
-export type ContextType = {
+export type AppContextType = {
   dataSources: DataSources;
 };
 
@@ -52,7 +52,7 @@ type ErrorResponse = {
   Error: string;
 };
 
-enum ShowType {
+export enum ShowType {
   MOVIE = "movie",
   SERIES = "series",
   EPISODE = "episode",

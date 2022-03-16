@@ -3,9 +3,11 @@ schema: "http://localhost:4000"
 documents: null
 generates:
   src/types/graphql.ts:
+    config:
+      contextType: ./index#AppContextType
+      mappers:
+        Show: ./index#ApiShow
+        Type: ./index#ShowType
     plugins:
       - "typescript"
       - "typescript-resolvers"
-  ./graphql.schema.json:
-    plugins:
-      - "introspection"
