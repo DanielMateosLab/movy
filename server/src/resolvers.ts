@@ -1,4 +1,4 @@
-import { DataSources } from "./datasources";
+import { DataSources } from "./types";
 import { Resolvers } from "./types/graphql";
 
 const enumResolvers = {

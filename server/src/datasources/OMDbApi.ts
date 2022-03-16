@@ -1,8 +1,8 @@
 import { RESTDataSource } from "apollo-datasource-rest";
 import { UserInputError } from "apollo-server";
 import { OMDb_API_KEY } from "../config";
+import { SearchShowsByTitleApiResponse } from "../types";
 import { ShowsByTitleResponse } from "../types/graphql";
-import { SearchByTitleApiResponse } from "../types/OMDbResponses";
 
 class OMDbApi extends RESTDataSource {
   constructor() {
@@ -16,7 +16,7 @@ class OMDbApi extends RESTDataSource {
     type: string = "",
     page: number = 1
   ): Promise<ShowsByTitleResponse> {
-    const result: SearchByTitleApiResponse = await this.get("", {
+    const result: SearchShowsByTitleApiResponse = await this.get("", {
       s: title,
       type,
       page,
