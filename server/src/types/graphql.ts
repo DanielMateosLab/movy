@@ -59,7 +59,7 @@ export type Show = {
   /** The person who wrote the scripts */
   writer?: Maybe<Scalars['String']>;
   /** The year the show was released */
-  year: Scalars['Int'];
+  year: Scalars['String'];
 };
 
 /**
@@ -79,7 +79,8 @@ export enum Type {
   Series = 'SERIES'
 }
 
-
+export type WithIndex<TObject> = TObject & Record<string, any>;
+export type ResolversObject<TObject> = WithIndex<TObject>;
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
@@ -147,7 +148,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 ) => TResult | Promise<TResult>;
 
 /** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = {
+export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
@@ -156,10 +157,10 @@ export type ResolversTypes = {
   ShowsByTitleResponse: ResolverTypeWrapper<Omit<ShowsByTitleResponse, 'result'> & { result: Array<Maybe<ResolversTypes['Show']>> }>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Type: ResolverTypeWrapper<ShowType>;
-};
+}>;
 
 /** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = {
+export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
   ID: Scalars['ID'];
   Int: Scalars['Int'];
@@ -167,14 +168,14 @@ export type ResolversParentTypes = {
   Show: ApiShow;
   ShowsByTitleResponse: Omit<ShowsByTitleResponse, 'result'> & { result: Array<Maybe<ResolversParentTypes['Show']>> };
   String: Scalars['String'];
-};
+}>;
 
-export type QueryResolvers<ContextType = AppContextType, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+export type QueryResolvers<ContextType = AppContextType, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   showById?: Resolver<Maybe<ResolversTypes['Show']>, ParentType, ContextType, RequireFields<QueryShowByIdArgs, 'id'>>;
   showsByTitle?: Resolver<ResolversTypes['ShowsByTitleResponse'], ParentType, ContextType, RequireFields<QueryShowsByTitleArgs, 'title'>>;
-};
+}>;
 
-export type ShowResolvers<ContextType = AppContextType, ParentType extends ResolversParentTypes['Show'] = ResolversParentTypes['Show']> = {
+export type ShowResolvers<ContextType = AppContextType, ParentType extends ResolversParentTypes['Show'] = ResolversParentTypes['Show']> = ResolversObject<{
   actors?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   awards?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   director?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -185,23 +186,23 @@ export type ShowResolvers<ContextType = AppContextType, ParentType extends Resol
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['Type'], ParentType, ContextType>;
   writer?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  year?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  year?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
+}>;
 
-export type ShowsByTitleResponseResolvers<ContextType = AppContextType, ParentType extends ResolversParentTypes['ShowsByTitleResponse'] = ResolversParentTypes['ShowsByTitleResponse']> = {
+export type ShowsByTitleResponseResolvers<ContextType = AppContextType, ParentType extends ResolversParentTypes['ShowsByTitleResponse'] = ResolversParentTypes['ShowsByTitleResponse']> = ResolversObject<{
   page?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   result?: Resolver<Array<Maybe<ResolversTypes['Show']>>, ParentType, ContextType>;
   totalResults?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
+}>;
 
 export type TypeResolvers = EnumResolverSignature<{ EPISODE?: any, MOVIE?: any, SERIES?: any }, ResolversTypes['Type']>;
 
-export type Resolvers<ContextType = AppContextType> = {
+export type Resolvers<ContextType = AppContextType> = ResolversObject<{
   Query?: QueryResolvers<ContextType>;
   Show?: ShowResolvers<ContextType>;
   ShowsByTitleResponse?: ShowsByTitleResponseResolvers<ContextType>;
   Type?: TypeResolvers;
-};
+}>;
 

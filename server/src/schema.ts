@@ -27,7 +27,7 @@ export const typeDefs = gql`
     "The image url"
     poster: String!
     "The year the show was released"
-    year: Int!
+    year: String!
     "The main theme, like 'terror' or 'fiction'"
     genre: String
     "A small description or introduction to the show content"

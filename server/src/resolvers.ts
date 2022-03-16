@@ -1,29 +1,20 @@
-// TODO: Update types of showsByTitle Query and datasources
-// @ts-nocheck
-import { DataSources } from "./types";
+import { ShowType } from "./types";
 import { Resolvers } from "./types/graphql";
 
-const enumResolvers = {
-  Type: {
-    MOVIE: "movie",
-    SERIES: "series",
-    EPISODE: "episode",
-  },
-};
-
-type ExtendedResolvers = Resolvers<{
-  dataSources: DataSources;
-}> &
-  typeof enumResolvers;
-
-const resolvers: ExtendedResolvers = {
+const resolvers: Resolvers = {
   Query: {
     showsByTitle: (_, { title, type, page }, { dataSources }) => {
-      console.log(title, type, page);
-      return dataSources.omdbApi.searchShowsByTitle(title, type, page);
+      return dataSources.omdbApi.searchShowsByTitle({ title, type, page });
     },
   },
-  ...enumResolvers,
+  Show: {
+    id: ({ imdbID }) => imdbID,
+    type: ({ Type }) => Type,
+    title: ({ Title }) => Title,
+    poster: ({ Poster }) => Poster,
+    year: ({ Year }) => Year,
+  },
+  Type: ShowType,
 };
 
 export default resolvers;

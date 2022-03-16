@@ -2,7 +2,11 @@ import { RESTDataSource } from "apollo-datasource-rest";
 import { UserInputError } from "apollo-server";
 import { OMDb_API_KEY } from "../config";
 import { SearchShowsByTitleApiResponse } from "../types";
-import { ShowsByTitleResponse } from "../types/graphql";
+import {
+  QueryShowByIdArgs,
+  QueryShowsByTitleArgs,
+  Show,
+} from "../types/graphql";
 
 class OMDbApi extends RESTDataSource {
   constructor() {
@@ -11,42 +15,29 @@ class OMDbApi extends RESTDataSource {
     this.baseURL = "http://www.omdbapi.com/";
   }
 
-  async searchShowsByTitle(
-    title: string,
-    type: string = "",
-    page: number = 1
-  ): Promise<ShowsByTitleResponse> {
+  async searchShowsByTitle({ title, type, page }: QueryShowsByTitleArgs) {
     const result: SearchShowsByTitleApiResponse = await this.get("", {
       s: title,
-      type,
-      page,
+      type: type || "",
+      page: page || 1,
       apikey: OMDb_API_KEY,
     });
 
     if (result.Response == "True") {
-      // We parse the shows' keys to match the schema
-      const parsedShows = result.Search.map((show) => ({
-        id: show.imdbID,
-        type: show.Type as any, // TODO: how to implement enums with graphql codegen
-        title: show.Title,
-        poster: show.Poster,
-        year: +show.Year,
-      }));
-
       return {
-        result: parsedShows,
+        result: result.Search,
         totalResults: result.totalResults,
-        page,
+        page: page || 1,
       };
     }
 
     throw new UserInputError(result.Error);
   }
 
-  getShowById(id: string) {
+  getShowById({ id }: QueryShowByIdArgs): Promise<Show> {
     return this.get("", {
       i: id,
-      apikey: OMDb_API_KEY,
+      apiKey: OMDb_API_KEY,
     });
   }
 }
