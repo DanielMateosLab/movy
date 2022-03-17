@@ -1,10 +1,10 @@
 // The error response has always the same shape
-const errorMockResponse = {
+export const errorMockResponse = {
   Error: "Movie not found!",
   Response: "False",
 };
 
-export const showsByTitleMockResponses = {
+export const showsByTitleMockRes = {
   Response: "True",
   Search: [
     {
