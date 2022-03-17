@@ -3,7 +3,7 @@ import { ApolloServer } from "apollo-server";
 import resolvers from "./resolvers";
 import { typeDefs } from "./schema";
 import checkConfigVars from "./config";
-import { dataSources } from "./datasources";
+import dataSources from "./datasources";
 
 checkConfigVars();
 

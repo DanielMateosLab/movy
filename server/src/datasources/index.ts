@@ -1,5 +1,7 @@
 import OMDbApi from "./OMDbApi";
 
-export const dataSources = () => ({
+const dataSources = () => ({
   omdbApi: new OMDbApi(),
 });
+
+export default dataSources;

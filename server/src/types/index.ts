@@ -1,4 +1,4 @@
-import { dataSources } from "../datasources";
+import dataSources from "../datasources";
 
 export type DataSources = ReturnType<typeof dataSources>;
 
