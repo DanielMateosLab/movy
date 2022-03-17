@@ -115,10 +115,9 @@ describe("Queries", () => {
 
         const result = await testServer.executeOperation(operation);
 
-        console.log(toReadableJSON(result));
-
         expect(result.errors).toBeUndefined();
         expect(result.data).toBeDefined();
+        expect(result).toMatchSnapshot();
       });
     });
   });
