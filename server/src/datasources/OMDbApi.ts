@@ -2,11 +2,7 @@ import { RESTDataSource } from "apollo-datasource-rest";
 import { UserInputError } from "apollo-server";
 import { OMDb_API_KEY } from "../config";
 import { ApiShow, SearchShowsByTitleApiResponse } from "../types";
-import {
-  QueryShowByIdArgs,
-  QueryShowsByTitleArgs,
-  Show,
-} from "../types/graphql";
+import { QueryShowByIdArgs, QueryShowsByTitleArgs } from "../types/graphql";
 
 class OMDbApi extends RESTDataSource {
   constructor() {
@@ -39,6 +35,17 @@ class OMDbApi extends RESTDataSource {
       i: id,
       apiKey: OMDb_API_KEY,
     });
+  }
+
+  /**
+   * Returns parent[property] if it is defined.
+   * If not, calls OMDbApi "search by id" endpoint to get "property"
+   * and returns it.
+   */
+  async getPropertyFromParentOrAPI(property: keyof ApiShow, parent: ApiShow) {
+    if (property in parent) return property;
+
+    return (await this.getShowById({ id: parent.imdbID }))[property];
   }
 }
 
