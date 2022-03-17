@@ -119,6 +119,16 @@ describe("Queries", () => {
         expect(result.data).toBeDefined();
         expect(result).toMatchSnapshot();
       });
+      it("returns an error with an invalid search string", async () => {
+        // @ts-ignore
+        OMDbApi.prototype.get = jest.fn(async () => errorMockResponse);
+
+        const result = await testServer.executeOperation(operation);
+
+        expect(result.data).toBeNull();
+        expect(result.errors).toBeDefined();
+        expect(result).toMatchSnapshot();
+      });
     });
   });
   describe.skip("Query.showById", () => {});

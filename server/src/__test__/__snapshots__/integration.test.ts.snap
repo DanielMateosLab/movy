@@ -148,6 +148,21 @@ Object {
 }
 `;
 
+exports[`Queries Query.showsByTitle Complex Search Query returns an error with an invalid search string 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: Movie not found!],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries Query.showsByTitle Simple Search Show Query gets a list of shows 1`] = `
 Object {
   "data": Object {
