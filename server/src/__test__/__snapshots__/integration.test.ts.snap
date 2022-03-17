@@ -253,7 +253,7 @@ Object {
 }
 `;
 
-exports[`Queries Query.showsByTitle Simple Search Show Query returns an error if with an invalid search string 1`] = `
+exports[`Queries Query.showsByTitle Simple Search Show Query returns an error with an invalid search string 1`] = `
 Object {
   "data": null,
   "errors": Array [

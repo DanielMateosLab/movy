@@ -63,7 +63,7 @@ describe("Queries", () => {
         expect(result).toMatchSnapshot();
       });
 
-      it("returns an error if with an invalid search string", async () => {
+      it("returns an error with an invalid search string", async () => {
         // @ts-ignore
         OMDbApi.prototype.get = jest.fn(async () => errorMockResponse);
 
