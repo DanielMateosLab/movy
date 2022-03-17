@@ -1,5 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Queries Query.showById gets show details 1`] = `
+Object {
+  "data": Object {
+    "showById": Object {
+      "actors": "Actors",
+      "awards": "Awards",
+      "director": "Director",
+      "genre": "Genre",
+      "id": "tt0372784",
+      "plot": "Plot",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+      "title": "Batman Begins",
+      "type": "MOVIE",
+      "writer": "Writer",
+      "year": "2005",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries Query.showById returns null as data if there is an error or no show is found 1`] = `
+Object {
+  "data": Object {
+    "showById": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries Query.showsByTitle Complex Search Query gets a list of shows 1`] = `
 Object {
   "data": Object {

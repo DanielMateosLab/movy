@@ -159,11 +159,10 @@ describe("Queries", () => {
 
       const result = await testServer.executeOperation(operation);
 
-      console.log(toReadableJSON(result));
-
       expect(result.errors).toBeUndefined();
       expect(result.data).toBeDefined();
       expect(result.data?.showById.id).toEqual(showByIdMockResponse.imdbID);
+      expect(result).toMatchSnapshot();
     });
     it("returns null as data if there is an error or no show is found", async () => {
       // @ts-ignore
@@ -171,10 +170,9 @@ describe("Queries", () => {
 
       const result = await testServer.executeOperation(operation);
 
-      console.log(toReadableJSON(result));
-
       expect(result.errors).toBeUndefined();
       expect(result.data?.showById).toBeNull();
+      expect(result).toMatchSnapshot();
     });
   });
 });
