@@ -1,7 +1,11 @@
 import { RESTDataSource } from "apollo-datasource-rest";
 import { UserInputError } from "apollo-server";
 import { OMDb_API_KEY } from "../config";
-import { ApiShow, SearchShowsByTitleApiResponse } from "../types";
+import {
+  ApiShow,
+  GetShowByIdApiResponse,
+  SearchShowsByTitleApiResponse,
+} from "../types";
 import { QueryShowByIdArgs, QueryShowsByTitleArgs } from "../types/graphql";
 
 class OMDbApi extends RESTDataSource {
@@ -30,11 +34,19 @@ class OMDbApi extends RESTDataSource {
     throw new UserInputError(result.Error);
   }
 
-  getShowById({ id }: QueryShowByIdArgs): Promise<ApiShow> {
-    return this.get("", {
+  async getShowById({ id }: QueryShowByIdArgs): Promise<ApiShow | null> {
+    const result: GetShowByIdApiResponse = await this.get("", {
       i: id,
       apiKey: OMDb_API_KEY,
     });
+
+    if (result.Response == "True") {
+      const { Response, ...show } = result;
+
+      return show;
+    }
+
+    return null;
   }
 
   /**
@@ -45,7 +57,7 @@ class OMDbApi extends RESTDataSource {
   async getPropertyFromParentOrAPI(property: keyof ApiShow, parent: ApiShow) {
     if (property in parent) return property;
 
-    return (await this.getShowById({ id: parent.imdbID }))[property];
+    return (await this.getShowById({ id: parent.imdbID }))![property];
   }
 }
 

@@ -6,6 +6,9 @@ const resolvers: Resolvers = {
     showsByTitle: (_, { title, type, page }, { dataSources }) => {
       return dataSources.omdbApi.searchShowsByTitle({ title, type, page });
     },
+    showById: (_, { id }, { dataSources }) => {
+      return dataSources.omdbApi.getShowById({ id });
+    },
   },
   Show: {
     id: ({ imdbID }) => imdbID,
@@ -13,6 +16,9 @@ const resolvers: Resolvers = {
     title: ({ Title }) => Title,
     poster: ({ Poster }) => Poster,
     year: ({ Year }) => Year,
+    // This function avoids code repetition and also makes easy
+    // to implement new resolvers if we are interested in another
+    // field of the OMDb API.
     ...generateParentOrAPIResolverForProperties(
       "Genre",
       "Plot",
