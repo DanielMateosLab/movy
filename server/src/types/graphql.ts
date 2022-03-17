@@ -41,23 +41,23 @@ export type QueryShowsByTitleArgs = {
 export type Show = {
   __typename?: 'Show';
   /** Highlighted actors */
-  actors?: Maybe<Scalars['String']>;
+  actors: Scalars['String'];
   /** Highlighted awards */
-  awards?: Maybe<Scalars['String']>;
+  awards: Scalars['String'];
   /** The person in charge of the dramatic and artistic aspects */
-  director?: Maybe<Scalars['String']>;
+  director: Scalars['String'];
   /** The main theme, like 'terror' or 'fiction' */
-  genre?: Maybe<Scalars['String']>;
+  genre: Scalars['String'];
   id: Scalars['ID'];
   /** A small description or introduction to the show content */
-  plot?: Maybe<Scalars['String']>;
+  plot: Scalars['String'];
   /** The image url */
   poster: Scalars['String'];
   title: Scalars['String'];
   /** The kind of show */
   type: Type;
   /** The person who wrote the scripts */
-  writer?: Maybe<Scalars['String']>;
+  writer: Scalars['String'];
   /** The year the show was released */
   year: Scalars['String'];
 };
@@ -176,16 +176,16 @@ export type QueryResolvers<ContextType = AppContextType, ParentType extends Reso
 }>;
 
 export type ShowResolvers<ContextType = AppContextType, ParentType extends ResolversParentTypes['Show'] = ResolversParentTypes['Show']> = ResolversObject<{
-  actors?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  awards?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  director?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  genre?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  actors?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  awards?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  director?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  genre?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  plot?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  plot?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   poster?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['Type'], ParentType, ContextType>;
-  writer?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  writer?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   year?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
