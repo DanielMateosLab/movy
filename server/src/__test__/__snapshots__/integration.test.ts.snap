@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Queries Query.showsByTitle gets a list of shows with a valid search string 1`] = `
+exports[`Queries Query.showsByTitle Simple Search Show Query gets a list of shows 1`] = `
 Object {
   "data": Object {
     "showsByTitle": Object {
@@ -90,7 +90,7 @@ Object {
 }
 `;
 
-exports[`Queries Query.showsByTitle returns an error if with an invalid search string 1`] = `
+exports[`Queries Query.showsByTitle Simple Search Show Query returns an error if with an invalid search string 1`] = `
 Object {
   "data": null,
   "errors": Array [
