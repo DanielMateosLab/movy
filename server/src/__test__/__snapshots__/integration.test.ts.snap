@@ -46,6 +46,7 @@ exports[`Queries Query.showsByTitle Complex Search Query gets a list of shows 1`
 Object {
   "data": Object {
     "showsByTitle": Object {
+      "page": 1,
       "result": Array [
         Object {
           "actors": "Christian Bale, Michael Caine, Ken Watanabe",
@@ -178,6 +179,7 @@ Object {
           "year": "2016",
         },
       ],
+      "totalResults": 406,
     },
   },
   "errors": undefined,
@@ -190,12 +192,16 @@ Object {
 }
 `;
 
-exports[`Queries Query.showsByTitle Complex Search Query returns an error with an invalid search string 1`] = `
+exports[`Queries Query.showsByTitle Complex Search Query returns an empty list of shows with an invalid search string 1`] = `
 Object {
-  "data": null,
-  "errors": Array [
-    [GraphQLError: Movie not found!],
-  ],
+  "data": Object {
+    "showsByTitle": Object {
+      "page": 1,
+      "result": Array [],
+      "totalResults": 0,
+    },
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -295,12 +301,16 @@ Object {
 }
 `;
 
-exports[`Queries Query.showsByTitle Simple Search Show Query returns an error with an invalid search string 1`] = `
+exports[`Queries Query.showsByTitle Simple Search Show Query returns an empty list of shows with an invalid search string 1`] = `
 Object {
-  "data": null,
-  "errors": Array [
-    [GraphQLError: Movie not found!],
-  ],
+  "data": Object {
+    "showsByTitle": Object {
+      "page": 1,
+      "result": Array [],
+      "totalResults": 0,
+    },
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

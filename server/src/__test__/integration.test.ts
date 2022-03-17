@@ -28,6 +28,15 @@ describe("Queries", () => {
     });
   });
   describe("Query.showsByTitle", () => {
+    // Expected data object if there are no results
+    const noResultsData = {
+      showsByTitle: {
+        result: [],
+        page: 1,
+        totalResults: 0,
+      },
+    };
+
     describe("Simple Search Show Query", () => {
       // This query tries to fetch only for the fields we get from a normal
       // "search by title" OMDbAPI request.
@@ -42,9 +51,9 @@ describe("Queries", () => {
               poster
               year
             }
-          totalResults
-          page
-            }
+            totalResults
+            page
+              }
           }
         `,
         variables: { title: "mock" },
@@ -63,14 +72,14 @@ describe("Queries", () => {
         expect(result).toMatchSnapshot();
       });
 
-      it("returns an error with an invalid search string", async () => {
+      it("returns an empty list of shows with an invalid search string", async () => {
         // @ts-ignore
         OMDbApi.prototype.get = jest.fn(async () => errorMockResponse);
 
         const result = await testServer.executeOperation(operation);
 
-        expect(result.data).toBeNull();
-        expect(result.errors).toBeDefined();
+        expect(result.data).toEqual(noResultsData);
+        expect(result.errors).toBeUndefined();
         expect(result).toMatchSnapshot();
       });
     });
@@ -82,6 +91,8 @@ describe("Queries", () => {
         query: `
          query TestQuery($title: String!) {
             showsByTitle(title: $title) {
+              page
+              totalResults
               result {
                 id
                 type
@@ -115,18 +126,18 @@ describe("Queries", () => {
 
         const result = await testServer.executeOperation(operation);
 
-        expect(result.errors).toBeUndefined();
         expect(result.data).toBeDefined();
+        expect(result.errors).toBeUndefined();
         expect(result).toMatchSnapshot();
       });
-      it("returns an error with an invalid search string", async () => {
+      it("returns an empty list of shows with an invalid search string", async () => {
         // @ts-ignore
         OMDbApi.prototype.get = jest.fn(async () => errorMockResponse);
 
         const result = await testServer.executeOperation(operation);
 
-        expect(result.data).toBeNull();
-        expect(result.errors).toBeDefined();
+        expect(result.data).toEqual(noResultsData);
+        expect(result.errors).toBeUndefined();
         expect(result).toMatchSnapshot();
       });
     });

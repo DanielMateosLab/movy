@@ -6,7 +6,11 @@ import {
   GetShowByIdApiResponse,
   SearchShowsByTitleApiResponse,
 } from "../types";
-import { QueryShowByIdArgs, QueryShowsByTitleArgs } from "../types/graphql";
+import {
+  QueryShowByIdArgs,
+  QueryShowsByTitleArgs,
+  ShowsByTitleResponse,
+} from "../types/graphql";
 
 class OMDbApi extends RESTDataSource {
   constructor() {
@@ -31,7 +35,11 @@ class OMDbApi extends RESTDataSource {
       };
     }
 
-    throw new UserInputError(result.Error);
+    return {
+      result: [],
+      totalResults: 0,
+      page: 1,
+    };
   }
 
   async getShowById({ id }: QueryShowByIdArgs): Promise<ApiShow | null> {
