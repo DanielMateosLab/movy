@@ -7,6 +7,7 @@ import {
   showByIdMockResponse,
   showsByTitleMockRes,
 } from "./mockApiResults";
+import { toReadableJSON } from "./utils";
 
 /** Here resolvers and dataSources are tested in conjunction.
  *  To do so, I mock the response from the get() method of the RESTDataSource
@@ -130,5 +131,50 @@ describe("Queries", () => {
       });
     });
   });
-  describe.skip("Query.showById", () => {});
+  describe("Query.showById", () => {
+    const operation = {
+      query: `
+        query ShowById($id: ID!) {
+          showById(id: $id) {
+            id
+            type
+            title
+            poster
+            year
+            plot
+            genre
+            actors
+            director
+            writer
+            awards
+          }
+        }
+      `,
+      variables: { id: "mock" },
+    };
+
+    it("gets show details", async () => {
+      // @ts-ignore
+      OMDbApi.prototype.get = jest.fn(async () => showByIdMockResponse);
+
+      const result = await testServer.executeOperation(operation);
+
+      console.log(toReadableJSON(result));
+
+      expect(result.errors).toBeUndefined();
+      expect(result.data).toBeDefined();
+      expect(result.data?.showById.id).toEqual(showByIdMockResponse.imdbID);
+    });
+    it("returns null as data if there is an error or no show is found", async () => {
+      // @ts-ignore
+      OMDbApi.prototype.get = jest.fn(async () => errorMockResponse);
+
+      const result = await testServer.executeOperation(operation);
+
+      console.log(toReadableJSON(result));
+
+      expect(result.errors).toBeUndefined();
+      expect(result.data?.showById).toBeNull();
+    });
+  });
 });
