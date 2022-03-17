@@ -1,7 +1,7 @@
 import { RESTDataSource } from "apollo-datasource-rest";
 import { UserInputError } from "apollo-server";
 import { OMDb_API_KEY } from "../config";
-import { SearchShowsByTitleApiResponse } from "../types";
+import { ApiShow, SearchShowsByTitleApiResponse } from "../types";
 import {
   QueryShowByIdArgs,
   QueryShowsByTitleArgs,
@@ -34,7 +34,7 @@ class OMDbApi extends RESTDataSource {
     throw new UserInputError(result.Error);
   }
 
-  getShowById({ id }: QueryShowByIdArgs): Promise<Show> {
+  getShowById({ id }: QueryShowByIdArgs): Promise<ApiShow> {
     return this.get("", {
       i: id,
       apiKey: OMDb_API_KEY,
