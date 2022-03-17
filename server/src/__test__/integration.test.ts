@@ -7,7 +7,6 @@ import {
   showByIdMockResponse,
   showsByTitleMockRes,
 } from "./mockApiResults";
-import { toReadableJSON } from "./utils";
 
 /** Here resolvers and dataSources are tested in conjunction.
  *  To do so, I mock the response from the get() method of the RESTDataSource

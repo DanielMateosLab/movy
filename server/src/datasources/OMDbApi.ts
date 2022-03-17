@@ -1,16 +1,11 @@
 import { RESTDataSource } from "apollo-datasource-rest";
-import { UserInputError } from "apollo-server";
 import { OMDb_API_KEY } from "../config";
 import {
   ApiShow,
   GetShowByIdApiResponse,
   SearchShowsByTitleApiResponse,
 } from "../types";
-import {
-  QueryShowByIdArgs,
-  QueryShowsByTitleArgs,
-  ShowsByTitleResponse,
-} from "../types/graphql";
+import { QueryShowByIdArgs, QueryShowsByTitleArgs } from "../types/graphql";
 
 class OMDbApi extends RESTDataSource {
   constructor() {
