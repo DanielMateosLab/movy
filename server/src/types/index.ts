@@ -42,7 +42,7 @@ export type SearchShowsByTitleApiResponse =
   | ErrorResponse;
 
 /** Response when searching by Id */
-export type getShowByIdApiResponse =
+export type GetShowByIdApiResponse =
   | ({ Response: "True" } & ApiShow)
   | ErrorResponse;
 
