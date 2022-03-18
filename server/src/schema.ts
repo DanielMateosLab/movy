@@ -27,19 +27,19 @@ export const typeDefs = gql`
     "The image url"
     poster: String!
     "The year the show was released"
-    year: Int!
+    year: String!
     "The main theme, like 'terror' or 'fiction'"
-    genre: String
+    genre: String!
     "A small description or introduction to the show content"
-    plot: String
+    plot: String!
     "Highlighted actors"
-    actors: String
+    actors: String!
     "The person in charge of the dramatic and artistic aspects"
-    director: String
+    director: String!
     "The person who wrote the scripts"
-    writer: String
+    writer: String!
     "Highlighted awards"
-    awards: String
+    awards: String!
   }
 
   enum Type {

@@ -1,0 +1,321 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Queries Query.showById gets show details 1`] = `
+Object {
+  "data": Object {
+    "showById": Object {
+      "actors": "Actors",
+      "awards": "Awards",
+      "director": "Director",
+      "genre": "Genre",
+      "id": "tt0372784",
+      "plot": "Plot",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+      "title": "Batman Begins",
+      "type": "MOVIE",
+      "writer": "Writer",
+      "year": "2005",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries Query.showById returns null as data if there is an error or no show is found 1`] = `
+Object {
+  "data": Object {
+    "showById": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries Query.showsByTitle Complex Search Query gets a list of shows 1`] = `
+Object {
+  "data": Object {
+    "showsByTitle": Object {
+      "page": 1,
+      "result": Array [
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt0372784",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+          "title": "Batman Begins",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "2005",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt2975590",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BYThjYzcyYzItNTVjNy00NDk0LTgwMWQtYjMwNmNlNWJhMzMyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+          "title": "Batman v Superman: Dawn of Justice",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "2016",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt0096895",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwNDMwMDk2._V1_SX300.jpg",
+          "title": "Batman",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "1989",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt0103776",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BOGZmYzVkMmItM2NiOS00MDI3LWI4ZWQtMTg0YWZkODRkMmViXkEyXkFqcGdeQXVyODY0NzcxNw@@._V1_SX300.jpg",
+          "title": "Batman Returns",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "1992",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt0112462",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BNDdjYmFiYWEtYzBhZS00YTZkLWFlODgtY2I5MDE0NzZmMDljXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+          "title": "Batman Forever",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "1995",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt0118688",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMGQ5YTM1NmMtYmIxYy00N2VmLWJhZTYtN2EwYTY3MWFhOTczXkEyXkFqcGdeQXVyNTA2NTI0MTY@._V1_SX300.jpg",
+          "title": "Batman & Robin",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "1997",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt1877830",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_SX300.jpg",
+          "title": "The Batman",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "2022",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt4116284",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SX300.jpg",
+          "title": "The Lego Batman Movie",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "2017",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt1569923",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BNmY4ZDZjY2UtOWFiYy00MjhjLThmMjctOTQ2NjYxZGRjYmNlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
+          "title": "Batman: Under the Red Hood",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "2010",
+        },
+        Object {
+          "actors": "Christian Bale, Michael Caine, Ken Watanabe",
+          "awards": "Nominated for 1 Oscar. 13 wins & 79 nominations total",
+          "director": "Christopher Nolan",
+          "genre": "Action, Crime, Drama",
+          "id": "tt4853102",
+          "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMTdjZTliODYtNWExMi00NjQ1LWIzN2MtN2Q5NTg5NTk3NzliL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
+          "title": "Batman: The Killing Joke",
+          "type": "MOVIE",
+          "writer": "Bob Kane, David S. Goyer, Christopher Nolan",
+          "year": "2016",
+        },
+      ],
+      "totalResults": 406,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries Query.showsByTitle Complex Search Query returns an empty list of shows with an invalid search string 1`] = `
+Object {
+  "data": Object {
+    "showsByTitle": Object {
+      "page": 1,
+      "result": Array [],
+      "totalResults": 0,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries Query.showsByTitle Simple Search Show Query gets a list of shows 1`] = `
+Object {
+  "data": Object {
+    "showsByTitle": Object {
+      "page": 1,
+      "result": Array [
+        Object {
+          "id": "tt0372784",
+          "poster": "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+          "title": "Batman Begins",
+          "type": "MOVIE",
+          "year": "2005",
+        },
+        Object {
+          "id": "tt2975590",
+          "poster": "https://m.media-amazon.com/images/M/MV5BYThjYzcyYzItNTVjNy00NDk0LTgwMWQtYjMwNmNlNWJhMzMyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+          "title": "Batman v Superman: Dawn of Justice",
+          "type": "MOVIE",
+          "year": "2016",
+        },
+        Object {
+          "id": "tt0096895",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwNDMwMDk2._V1_SX300.jpg",
+          "title": "Batman",
+          "type": "MOVIE",
+          "year": "1989",
+        },
+        Object {
+          "id": "tt0103776",
+          "poster": "https://m.media-amazon.com/images/M/MV5BOGZmYzVkMmItM2NiOS00MDI3LWI4ZWQtMTg0YWZkODRkMmViXkEyXkFqcGdeQXVyODY0NzcxNw@@._V1_SX300.jpg",
+          "title": "Batman Returns",
+          "type": "MOVIE",
+          "year": "1992",
+        },
+        Object {
+          "id": "tt0112462",
+          "poster": "https://m.media-amazon.com/images/M/MV5BNDdjYmFiYWEtYzBhZS00YTZkLWFlODgtY2I5MDE0NzZmMDljXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+          "title": "Batman Forever",
+          "type": "MOVIE",
+          "year": "1995",
+        },
+        Object {
+          "id": "tt0118688",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMGQ5YTM1NmMtYmIxYy00N2VmLWJhZTYtN2EwYTY3MWFhOTczXkEyXkFqcGdeQXVyNTA2NTI0MTY@._V1_SX300.jpg",
+          "title": "Batman & Robin",
+          "type": "MOVIE",
+          "year": "1997",
+        },
+        Object {
+          "id": "tt1877830",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_SX300.jpg",
+          "title": "The Batman",
+          "type": "MOVIE",
+          "year": "2022",
+        },
+        Object {
+          "id": "tt4116284",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SX300.jpg",
+          "title": "The Lego Batman Movie",
+          "type": "MOVIE",
+          "year": "2017",
+        },
+        Object {
+          "id": "tt1569923",
+          "poster": "https://m.media-amazon.com/images/M/MV5BNmY4ZDZjY2UtOWFiYy00MjhjLThmMjctOTQ2NjYxZGRjYmNlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
+          "title": "Batman: Under the Red Hood",
+          "type": "MOVIE",
+          "year": "2010",
+        },
+        Object {
+          "id": "tt4853102",
+          "poster": "https://m.media-amazon.com/images/M/MV5BMTdjZTliODYtNWExMi00NjQ1LWIzN2MtN2Q5NTg5NTk3NzliL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
+          "title": "Batman: The Killing Joke",
+          "type": "MOVIE",
+          "year": "2016",
+        },
+      ],
+      "totalResults": 406,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries Query.showsByTitle Simple Search Show Query returns an empty list of shows with an invalid search string 1`] = `
+Object {
+  "data": Object {
+    "showsByTitle": Object {
+      "page": 1,
+      "result": Array [],
+      "totalResults": 0,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
