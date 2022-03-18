@@ -17,6 +17,11 @@ export type Scalars = {
   Float: number;
 };
 
+export enum CacheControlScope {
+  Private = 'PRIVATE',
+  Public = 'PUBLIC'
+}
+
 export type Query = {
   __typename?: 'Query';
   /** Get a single show information by its id */
@@ -150,6 +155,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  CacheControlScope: CacheControlScope;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Query: ResolverTypeWrapper<{}>;
@@ -169,6 +175,14 @@ export type ResolversParentTypes = ResolversObject<{
   ShowsByTitleResponse: Omit<ShowsByTitleResponse, 'result'> & { result: Array<Maybe<ResolversParentTypes['Show']>> };
   String: Scalars['String'];
 }>;
+
+export type CacheControlDirectiveArgs = {
+  inheritMaxAge?: Maybe<Scalars['Boolean']>;
+  maxAge?: Maybe<Scalars['Int']>;
+  scope?: Maybe<CacheControlScope>;
+};
+
+export type CacheControlDirectiveResolver<Result, Parent, ContextType = AppContextType, Args = CacheControlDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type QueryResolvers<ContextType = AppContextType, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   showById?: Resolver<Maybe<ResolversTypes['Show']>, ParentType, ContextType, RequireFields<QueryShowByIdArgs, 'id'>>;
@@ -206,3 +220,6 @@ export type Resolvers<ContextType = AppContextType> = ResolversObject<{
   Type?: TypeResolvers;
 }>;
 
+export type DirectiveResolvers<ContextType = AppContextType> = ResolversObject<{
+  cacheControl?: CacheControlDirectiveResolver<any, any, ContextType>;
+}>;

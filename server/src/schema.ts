@@ -1,6 +1,17 @@
 import { gql } from "apollo-server";
 
 export const typeDefs = gql`
+  enum CacheControlScope {
+    PUBLIC
+    PRIVATE
+  }
+
+  directive @cacheControl(
+    maxAge: Int
+    scope: CacheControlScope
+    inheritMaxAge: Boolean
+  ) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
+
   type Query {
     "Get shows that match a title pattern. We can specify the show type and the results page"
     showsByTitle(title: String!, type: Type, page: Int): ShowsByTitleResponse!
