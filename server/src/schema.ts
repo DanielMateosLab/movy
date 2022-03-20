@@ -1,11 +1,23 @@
 import { gql } from "apollo-server";
 
 export const typeDefs = gql`
+  enum CacheControlScope {
+    PUBLIC
+    PRIVATE
+  }
+
+  directive @cacheControl(
+    maxAge: Int
+    scope: CacheControlScope
+    inheritMaxAge: Boolean
+  ) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
+
   type Query {
     "Get shows that match a title pattern. We can specify the show type and the results page"
     showsByTitle(title: String!, type: Type, page: Int): ShowsByTitleResponse!
+      @cacheControl(maxAge: 86400)
     "Get a single show information by its id"
-    showById(id: ID!): Show
+    showById(id: ID!): Show @cacheControl(maxAge: 86400)
   }
 
   """
@@ -19,7 +31,7 @@ export const typeDefs = gql`
   }
 
   "A show is a movie, series or an episode"
-  type Show {
+  type Show @cacheControl(maxAge: 86400) {
     id: ID!
     "The kind of show"
     type: Type!

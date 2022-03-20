@@ -4,13 +4,16 @@ import resolvers from "./resolvers";
 import { typeDefs } from "./schema";
 import checkConfigVars from "./config";
 import dataSources from "./datasources";
+import setUpCache from "./cache";
 
 checkConfigVars();
+const cache = setUpCache();
 
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources,
+  cache,
 });
 
 const port = process.env.PORT || 4000;
