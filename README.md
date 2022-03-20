@@ -26,10 +26,12 @@ A service to get the details of your favourite apps.
 
 ### Server - Heroku CLI
 
-- Create a heroku app.
+Assuming you have installed heroku CLI and you are logged in:
+
+- Create a heroku app with `heroku create -a <your-app-name>`
 - From the root folder, use `git subtree push --prefix server heroku main`. This will push just the server folder as an isolated app to the heroku remote.
 - Set the `OMDb_API_KEY` environment variable.
-- Optionally, to use a redis cache, run `heroku addons:create heroku-redis:hobby-dev -a your-app-name`. This should set up the redis instance and update the `REDIS_URL` EV for you.
+- Optionally, to use a redis cache, run `heroku addons:create heroku-redis:hobby-dev -a <your-app-name>`. This should set up the redis instance and update the `REDIS_URL` EV for you.
 
 ## TODO
 
