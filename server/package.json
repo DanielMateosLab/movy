@@ -2,9 +2,9 @@
   "name": "@danielmat/movy-server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node 'dist/server.js'",
+    "start": "node 'dist/index.js'",
     "build": "tsc",
     "dev": "concurrently \"nodemon src/index.ts\" \"npm run codegen\"",
     "dev:redis": "docker-compose up -d redis && npm run dev",
