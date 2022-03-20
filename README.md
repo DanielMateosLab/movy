@@ -11,7 +11,7 @@ A service to get the details of your favourite apps.
   - OMDB Open REST API: external service to search for movies and movie details.
   - Redis Cache: caching service to save unnecesary calls to OMDB API source.
 
-## DEVELOPER SET UP INSTRUCTIONS
+## Developer Set Up Instructions
 
 ### Server
 
@@ -22,6 +22,14 @@ A service to get the details of your favourite apps.
 - I used `@graphql-codegen` to generate types out of the schema. You can re-generate them
   with `npm run codegen`. When using `dev*` scripts, they are re-generated whenever the schema file
   is changed.
+
+## Suggested Deploy Instructions
+
+### Server - Heroku
+
+- Create a heroku app.
+- From the root folder, use `git subtree push --prefix server heroku main`. This will push just the server folder as an isolated app to the heroku remote.
+- Set the `OMDb_API_KEY` environment variable.
 
 ## TODO
 
