@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Brand from "./Brand";
-import SearchForm from "./SearchForm";
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -14,20 +12,10 @@ const Layout: React.FC = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        <Brand />
-        <SearchForm />
-      </header>
-
       {children}
 
       <style jsx>
         {`
-          header {
-            padding: 2rem;
-            background: white;
-            border-bottom: 1px solid grey;
-          }
           .root {
             min-height: 100vh;
             background: rgba(0, 0, 0, 0.075);
