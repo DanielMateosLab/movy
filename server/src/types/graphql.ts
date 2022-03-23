@@ -79,6 +79,7 @@ export type ShowsByTitleResponse = {
 };
 
 export enum Type {
+  All = 'ALL',
   Episode = 'EPISODE',
   Movie = 'MOVIE',
   Series = 'SERIES'
@@ -211,7 +212,7 @@ export type ShowsByTitleResponseResolvers<ContextType = AppContextType, ParentTy
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type TypeResolvers = EnumResolverSignature<{ EPISODE?: any, MOVIE?: any, SERIES?: any }, ResolversTypes['Type']>;
+export type TypeResolvers = EnumResolverSignature<{ ALL?: any, EPISODE?: any, MOVIE?: any, SERIES?: any }, ResolversTypes['Type']>;
 
 export type Resolvers<ContextType = AppContextType> = ResolversObject<{
   Query?: QueryResolvers<ContextType>;

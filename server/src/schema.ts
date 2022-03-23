@@ -58,5 +58,6 @@ export const typeDefs = gql`
     EPISODE
     SERIES
     MOVIE
+    ALL
   }
 `;
