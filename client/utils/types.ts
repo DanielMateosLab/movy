@@ -1,6 +1,8 @@
+import { Type } from "./graphqlTypes";
+
 export interface ShowsByTitleArgs {
   title: string;
-  type: string;
+  type: Type;
   page: number;
 }
 

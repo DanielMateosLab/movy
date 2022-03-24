@@ -75,6 +75,7 @@ export type ShowsByTitleResponse = {
 };
 
 export enum Type {
+  All = 'ALL',
   Episode = 'EPISODE',
   Movie = 'MOVIE',
   Series = 'SERIES'
