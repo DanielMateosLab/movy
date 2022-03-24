@@ -1,7 +1,7 @@
 import { gql, useLazyQuery } from "@apollo/client";
-import { Field, FieldProps, Form, Formik, FormikConfig } from "formik";
+import { Field, Form, Formik, FormikConfig } from "formik";
 import { ShowsByTitleSummaryQuery } from "utils/graphqlTypes";
-import { SearchFormValues, ShowsByTitleArgs } from "utils/types";
+import { SearchFormValues } from "utils/types";
 import { searchShowByTitleValidation } from "utils/validation";
 import Button from "./Button";
 import SearchInfo from "./SearchInfo";
