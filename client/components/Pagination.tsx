@@ -1,4 +1,5 @@
 import React from "react";
+import { showsByTitleArgs } from "utils/apolloClient";
 import { ShowsByTitleResponse } from "utils/graphqlTypes";
 
 const Pagination: React.FC<
@@ -8,11 +9,20 @@ const Pagination: React.FC<
 
   function handleNextPage(event: React.SyntheticEvent) {
     event.preventDefault();
-    // TODO
+
+    showsByTitleArgs({
+      ...showsByTitleArgs(),
+      page: page + 1,
+    });
   }
 
   function handlePreviousPage(event: React.SyntheticEvent) {
     event.preventDefault();
+
+    showsByTitleArgs({
+      ...showsByTitleArgs(),
+      page: page - 1,
+    });
   }
 
   return (

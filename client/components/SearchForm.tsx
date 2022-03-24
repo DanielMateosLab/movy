@@ -1,35 +1,24 @@
-import { gql, useLazyQuery } from "@apollo/client";
+import { useReactiveVar } from "@apollo/client";
 import { Field, Form, Formik, FormikConfig } from "formik";
-import { ShowsByTitleSummaryQuery } from "utils/graphqlTypes";
+import { useEffect } from "react";
+import { showsByTitleArgs } from "utils/apolloClient";
+import { Type } from "utils/graphqlTypes";
 import { SearchFormValues } from "utils/types";
 import { searchShowByTitleValidation } from "utils/validation";
 import Button from "./Button";
 import SearchInfo from "./SearchInfo";
 import TextField from "./TextField";
 
-const SHOW_SUMMARIES = gql`
-  query ShowsByTitleSummary($title: String!, $type: Type, $page: Int) {
-    showsByTitle(title: $title, type: $type, page: $page) {
-      totalResults
-      page
-    }
-  }
-`;
-
 const SearchForm = () => {
-  // TODO: Re-think the data flow in the app. Use reactiveVariables for the query, isolate
-  // components, etc
-  const [getShows, result] =
-    useLazyQuery<ShowsByTitleSummaryQuery>(SHOW_SUMMARIES);
-
   const handleSubmit: FormikConfig<SearchFormValues>["onSubmit"] = async (
-    variables,
+    { title, type },
     { setSubmitting }
   ) => {
-    await getShows({ variables });
-
+    showsByTitleArgs({ page: showsByTitleArgs().page, title, type });
     setSubmitting(false);
   };
+
+  // TODO: use the loading flag to disable the submit button
 
   return (
     <>
@@ -37,7 +26,7 @@ const SearchForm = () => {
         initialValues={
           {
             title: "",
-            type: "ALL",
+            type: Type.All,
           } as SearchFormValues
         }
         validationSchema={searchShowByTitleValidation}
@@ -72,7 +61,7 @@ const SearchForm = () => {
             </section>
 
             <section className="form-footer">
-              <SearchInfo result={result} />
+              {/* <SearchInfo result={result} /> */}
             </section>
           </Form>
         )}
