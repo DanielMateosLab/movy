@@ -26,10 +26,17 @@ const ShowSummariesContainer: React.FC<{ loading: boolean }> = ({
       <style jsx>
         {`
           main {
-            display: flex;
-            flex-direction: column;
-            padding: 1rem;
+            padding: 2rem 0.5rem;
+
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1rem;
+          }
+
+          @media (min-width: 992px) {
+            main {
+              padding: 2rem 10vw;
+            }
           }
         `}
       </style>

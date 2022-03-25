@@ -5,7 +5,7 @@ const ShowSummaryCard: React.FC<{ show: ShowSummary }> = ({ show }) => {
     <article>
       <header className="layer">
         <h2>{show.title}</h2>
-        <span>{show.year}</span>
+        <span className="year">{show.year}</span>
       </header>
 
       <span className="show-type layer">{show.type}</span>
@@ -30,6 +30,10 @@ const ShowSummaryCard: React.FC<{ show: ShowSummary }> = ({ show }) => {
             justify-content: space-between;
             align-items: center;
             padding: 0 1rem;
+          }
+
+          .year {
+            margin-left: 1rem;
           }
 
           span {

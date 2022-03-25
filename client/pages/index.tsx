@@ -6,7 +6,6 @@ import { gql, useLazyQuery, useReactiveVar } from "@apollo/client";
 import { ShowsByTitleSummaryQuery } from "utils/graphqlTypes";
 import { showsByTitleArgs } from "utils/apolloClient";
 import { useEffect } from "react";
-import Spinner from "components/Spinner";
 import ShowSummariesContainer from "components/ShowSummariesContainer";
 import ShowSummaryCard from "components/ShowSummaryCard";
 
@@ -46,7 +45,7 @@ const Home: NextPage = () => {
       <ShowSummariesContainer loading={loading}>
         {data &&
           data.showsByTitle.result.map(
-            (show) => show && <ShowSummaryCard show={show} />
+            (show) => show && <ShowSummaryCard show={show} key={show.id} />
           )}
       </ShowSummariesContainer>
     </Layout>
