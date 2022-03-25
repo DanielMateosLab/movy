@@ -1,6 +1,6 @@
 const Spinner: React.FC = () => (
   <>
-    <div aria-label="Loading..." className="loading" />
+    <div aria-label="Loading..." className="loading" data-testid="spinner" />
 
     <style jsx>
       {`

@@ -7,11 +7,9 @@ interface Props {
   data?: ShowsByTitleSummaryQuery;
 }
 const SearchInfo: React.FC<Props> = ({ called, data, loading }) => {
-  if (!called) return null;
+  if (!called || loading) return null;
 
   const noShowsFound = !data || data.showsByTitle.totalResults == 0;
-
-  if (loading) return <span>Loading...</span>;
 
   if (noShowsFound) {
     return (

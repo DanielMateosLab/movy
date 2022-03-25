@@ -6,6 +6,8 @@ import { gql, useLazyQuery, useReactiveVar } from "@apollo/client";
 import { ShowsByTitleSummaryQuery } from "utils/graphqlTypes";
 import { showsByTitleArgs } from "utils/apolloClient";
 import { useEffect } from "react";
+import Spinner from "components/Spinner";
+import ShowSummariesContainer from "components/ShowSummariesContainer";
 
 export const SHOWS_BY_TITLE = gql`
   query ShowsByTitleSummary($title: String!, $type: Type, $page: Int) {
@@ -40,7 +42,7 @@ const Home: NextPage = () => {
         <SearchForm {...{ called, data, loading }} />
       </AppHeader>
 
-      <main></main>
+      <ShowSummariesContainer loading={true}></ShowSummariesContainer>
     </Layout>
   );
 };

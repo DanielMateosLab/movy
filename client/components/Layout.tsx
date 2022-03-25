@@ -19,6 +19,8 @@ const Layout: React.FC = ({ children }) => {
           .root {
             min-height: 100vh;
             background: rgba(0, 0, 0, 0.075);
+            display: flex;
+            flex-direction: column;
           }
         `}
       </style>

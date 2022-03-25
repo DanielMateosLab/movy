@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import AppHeader from "components/AppHeader";
 import SearchForm from "components/SearchForm";
+import ShowSummariesContainer from "components/ShowSummariesContainer";
 
 describe("AppHeader", () => {
   it("renders Movy brand and logo", () => {
@@ -40,21 +41,6 @@ describe("SearchForm", () => {
     expect(titleInput).toBeInTheDocument();
     expect(typeSelect).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();
-  });
-
-  it("shows a loading message if the result is loading", () => {
-    render(
-      <SearchForm
-        {...{
-          called: true,
-          loading: true,
-        }}
-      />
-    );
-
-    const loadingText = screen.getByText("Loading...");
-
-    expect(loadingText).toBeInTheDocument();
   });
 
   it("shows an informational message if no results are found", () => {
@@ -132,5 +118,26 @@ describe("SearchForm", () => {
 
     expect(previousPageLink).toBeInTheDocument();
     expect(nextPageLink).toBeInTheDocument();
+  });
+
+  describe("ShowSummariesContainer", () => {
+    it("shows a loading spinner if result is loading", () => {
+      render(<ShowSummariesContainer loading={true} />);
+
+      const spinner = screen.getByTestId("spinner");
+
+      expect(spinner).toBeInTheDocument();
+    });
+    it("displays the children elements if loading is false", () => {
+      render(
+        <ShowSummariesContainer loading={false}>
+          <span>mock</span>
+        </ShowSummariesContainer>
+      );
+
+      const mockChildren = screen.getByText("mock");
+
+      expect(mockChildren).toBeInTheDocument();
+    });
   });
 });
