@@ -21,7 +21,7 @@ const Brand = () => (
           width: 15vh;
         }
         .title {
-          font-size: 4rem;
+          font-size: 3rem;
           margin: 0;
           text-transform: uppercase;
           letter-spacing: 2px;
