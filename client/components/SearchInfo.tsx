@@ -1,11 +1,12 @@
-import { LazyQueryResult, OperationVariables } from "@apollo/client";
 import { ShowsByTitleSummaryQuery } from "utils/graphqlTypes";
 import Pagination from "./Pagination";
 
 interface Props {
-  result: LazyQueryResult<ShowsByTitleSummaryQuery, OperationVariables>;
+  loading: boolean;
+  called: boolean;
+  data?: ShowsByTitleSummaryQuery;
 }
-const SearchInfo: React.FC<Props> = ({ result: { data, loading, called } }) => {
+const SearchInfo: React.FC<Props> = ({ called, data, loading }) => {
   if (!called) return null;
 
   const noShowsFound = !data || data.showsByTitle.totalResults == 0;

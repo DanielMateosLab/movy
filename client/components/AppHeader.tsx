@@ -1,10 +1,10 @@
 import Brand from "./Brand";
-import SearchForm from "./SearchForm";
 
-const AppHeader: React.FC = () => (
+const AppHeader: React.FC = ({ children }) => (
   <header>
     <Brand />
-    <SearchForm />
+
+    {children}
 
     <style jsx>
       {`

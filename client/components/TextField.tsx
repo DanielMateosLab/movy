@@ -11,6 +11,7 @@ const TextField: React.FC<TextFieldProps> = ({ label, ...props }) => {
         <input
           {...field}
           placeholder={props.placeholder}
+          id={props.name}
           type="text"
           className={`box ${meta.touched && meta.error ? "error-border" : ""}`}
         />

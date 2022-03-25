@@ -31,13 +31,13 @@ const Pagination: React.FC<
 
       <span className="pagination">
         {page > 1 && (
-          <a href="#" onClick={handlePreviousPage}>
+          <a href="#" onClick={handlePreviousPage} aria-label="previous page">
             &lt;{" "}
           </a>
         )}
         <span>Page {page}</span>
         {!isLastPage && (
-          <a href="#" onClick={handleNextPage}>
+          <a href="#" onClick={handleNextPage} aria-label="next page">
             {" "}
             &gt;
           </a>

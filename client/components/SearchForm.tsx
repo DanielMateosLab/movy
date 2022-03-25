@@ -1,24 +1,26 @@
-import { useReactiveVar } from "@apollo/client";
 import { Field, Form, Formik, FormikConfig } from "formik";
-import { useEffect } from "react";
 import { showsByTitleArgs } from "utils/apolloClient";
-import { Type } from "utils/graphqlTypes";
+import { ShowsByTitleSummaryQuery, Type } from "utils/graphqlTypes";
 import { SearchFormValues } from "utils/types";
 import { searchShowByTitleValidation } from "utils/validation";
 import Button from "./Button";
 import SearchInfo from "./SearchInfo";
 import TextField from "./TextField";
 
-const SearchForm = () => {
+interface Props {
+  called: boolean;
+  loading: boolean;
+  data?: ShowsByTitleSummaryQuery;
+}
+const SearchForm: React.FC<Props> = (props) => {
   const handleSubmit: FormikConfig<SearchFormValues>["onSubmit"] = async (
     { title, type },
     { setSubmitting }
   ) => {
-    showsByTitleArgs({ page: showsByTitleArgs().page, title, type });
+    showsByTitleArgs({ title, type, page: showsByTitleArgs().page });
+
     setSubmitting(false);
   };
-
-  // TODO: use the loading flag to disable the submit button
 
   return (
     <>
@@ -54,14 +56,14 @@ const SearchForm = () => {
               </div>
 
               <div className="form-element">
-                <Button type="submit" disabled={isSubmitting}>
+                <Button type="submit" disabled={props.loading}>
                   Search
                 </Button>
               </div>
             </section>
 
             <section className="form-footer">
-              {/* <SearchInfo result={result} /> */}
+              <SearchInfo {...props} />
             </section>
           </Form>
         )}
@@ -113,4 +115,4 @@ const SearchForm = () => {
   );
 };
 
-export default () => <SearchForm />;
+export default SearchForm;
