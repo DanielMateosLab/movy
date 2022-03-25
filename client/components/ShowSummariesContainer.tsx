@@ -26,10 +26,10 @@ const ShowSummariesContainer: React.FC<{ loading: boolean }> = ({
       <style jsx>
         {`
           main {
-            max-width: 786px;
-            margin: 0 auto;
-
+            display: flex;
+            flex-direction: column;
             padding: 1rem;
+            gap: 1rem;
           }
         `}
       </style>

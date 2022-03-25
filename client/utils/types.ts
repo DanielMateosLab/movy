@@ -1,4 +1,4 @@
-import { Type } from "./graphqlTypes";
+import { Show, Type } from "./graphqlTypes";
 
 export interface ShowsByTitleArgs {
   title: string;
@@ -7,3 +7,8 @@ export interface ShowsByTitleArgs {
 }
 
 export type SearchFormValues = Pick<ShowsByTitleArgs, "title" | "type">;
+
+export type ShowSummary = Pick<
+  Show,
+  "id" | "type" | "title" | "year" | "poster"
+>;
