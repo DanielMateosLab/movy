@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import ShowSummariesContainer from "components/ShowSummariesContainer";
 import ShowSummaryCard from "components/ShowSummaryCard";
 import { useRouter } from "next/router";
+import Pagination from "components/Pagination";
 
 export const SHOWS_BY_TITLE = gql`
   query ShowsByTitleSummary($title: String!, $type: Type, $page: Int) {
@@ -50,18 +51,41 @@ const Home: NextPage = () => {
   }, [router.query]);
 
   return (
-    <Layout>
-      <AppHeader>
-        <SearchForm {...{ called, data, loading }} />
-      </AppHeader>
+    <>
+      <Layout>
+        <AppHeader>
+          <SearchForm {...{ called, data, loading }} />
+        </AppHeader>
 
-      <ShowSummariesContainer loading={loading}>
-        {data &&
-          data.showsByTitle.result.map(
-            (show) => show && <ShowSummaryCard show={show} key={show.id} />
+        <ShowSummariesContainer loading={loading}>
+          {data && (
+            <>
+              {data.showsByTitle.result.map(
+                (show) => show && <ShowSummaryCard show={show} key={show.id} />
+              )}
+            </>
           )}
-      </ShowSummariesContainer>
-    </Layout>
+        </ShowSummariesContainer>
+
+        {data && (
+          <footer>
+            <Pagination
+              totalResults={data.showsByTitle.totalResults}
+              page={data.showsByTitle.page}
+            />
+          </footer>
+        )}
+      </Layout>
+
+      <style jsx>
+        {`
+          footer {
+            text-align: center;
+            padding-bottom: 2rem;
+          }
+        `}
+      </style>
+    </>
   );
 };
 
