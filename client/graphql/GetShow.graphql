@@ -1,0 +1,14 @@
+query ShowById($id: ID!) {
+  showById(id: $id) {
+    poster
+    title
+    type
+    year
+    plot
+    genre
+    actors
+    director
+    writer
+    awards
+  }
+}
