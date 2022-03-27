@@ -53,7 +53,7 @@ const SearchForm: React.FC<Props> = (props) => {
               <TextField
                 name="title"
                 label="Title"
-                placeholder="Batman begins"
+                placeholder="Batman Begins"
               />
             </div>
 
