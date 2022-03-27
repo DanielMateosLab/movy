@@ -182,4 +182,34 @@ describe("SearchForm", () => {
       expect(typeElement).toBeInTheDocument();
     });
   });
+
+  describe("ShowDetailsCard", () => {
+    const show: NonNullable<ShowByIdQuery["showById"]> = {
+      __typename: "Show",
+      poster: "mockImage",
+      title: "Mock Title",
+      type: Type.Movie,
+      year: "2005",
+      plot: "Mock Plot",
+      genre: "Mock Genre",
+      actors: "Mock Actors",
+      director: "Mock Director",
+      writer: "Mock Writer",
+      awards: "Mock Awards",
+    };
+
+    render(<ShowDetailsCard show={show} />);
+
+    const { poster, __typename, ...details } = show;
+
+    const posterImage = screen.getByRole("img", {
+      name: "show poster",
+    });
+
+    expect(posterImage).toBeInTheDocument();
+
+    Object.values(details).forEach((detail) => {
+      expect(screen.getByText(detail)).toBeInTheDocument();
+    });
+  });
 });
