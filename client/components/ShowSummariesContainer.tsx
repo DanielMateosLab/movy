@@ -4,20 +4,7 @@ const ShowSummariesContainer: React.FC<{ loading: boolean }> = ({
   loading,
   children,
 }) => {
-  if (loading)
-    return (
-      <main className="centered">
-        <Spinner />
-
-        <style jsx>
-          {`
-            .centered {
-              margin: 2rem auto;
-            }
-          `}
-        </style>
-      </main>
-    );
+  if (loading) return <Spinner />;
 
   return (
     <main>
