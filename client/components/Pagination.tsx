@@ -27,7 +27,9 @@ const Pagination: React.FC<
 
   return (
     <div>
-      <span>{totalResults} shows found.</span>
+      <span>
+        {totalResults} show{totalResults > 1 ? "s" : ""} found.
+      </span>
 
       <span className="pagination">
         {page > 1 && (
@@ -39,7 +41,7 @@ const Pagination: React.FC<
         {!isLastPage && (
           <a href="#" onClick={handleNextPage} aria-label="next page">
             {" "}
-            &gt;
+            &gt;{" "}
           </a>
         )}
       </span>
