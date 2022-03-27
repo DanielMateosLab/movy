@@ -14,7 +14,7 @@ const ShowDetailsCard: React.FC<{
               <h1>{show.title}</h1>
               <span className="show-type">{show.type}</span>
             </header>
-            <p>{show.plot}</p>
+            <p className="plot">{show.plot}</p>
             <ul className="show-details">
               <Item name="Genre" value={show.genre} />
               <Item name="Released" value={show.year} />
@@ -35,7 +35,7 @@ const ShowDetailsCard: React.FC<{
           .card {
             border: 1px solid black;
             border-radius: 4px;
-            max-width: 900px;
+            max-width: 768px;
             background: white;
             margin: 0 auto;
           }
@@ -61,21 +61,14 @@ const ShowDetailsCard: React.FC<{
             font-size: 0.9rem;
             font-weight: 600;
           }
+          .plot {
+            font-size: 1.125rem;
+          }
           .show-details {
             padding: 0;
             margin-bottom: 0;
             display: grid;
             grid-template-columns: 1fr;
-          }
-          .show-details > :global(li) {
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-          }
-          .show-details > :global(li:hover) {
-            font-weight: bold;
           }
 
           @media (min-width: 768px) {
@@ -93,7 +86,32 @@ const ShowDetailsCard: React.FC<{
 export default ShowDetailsCard;
 
 const Item: React.FC<{ name: string; value: string }> = ({ name, value }) => (
-  <li>
-    <span>{name}</span> {value}
-  </li>
+  <>
+    <li>
+      <span className="name">{name}</span>{" "}
+      <span className="value">{value}</span>
+    </li>
+
+    <style jsx>
+      {`
+        li {
+          list-style: none;
+          display: flex;
+          justify-content: space-between;
+          padding: 0.5rem 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        li:hover {
+          font-weight: bold;
+        }
+        .name {
+          margin-right: 2rem;
+        }
+        .value {
+          flex-grow: 1;
+          text-align: end;
+        }
+      `}
+    </style>
+  </>
 );
