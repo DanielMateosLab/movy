@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import AppHeader from "components/AppHeader";
 import SearchForm from "components/SearchForm";
 import ShowSummariesContainer from "components/ShowSummariesContainer";
+import ShowSummaryCard from "components/ShowSummaryCard";
+import { Type } from "utils/graphqlTypes";
 
 describe("AppHeader", () => {
   it("renders Movy brand and logo", () => {
@@ -138,6 +140,36 @@ describe("SearchForm", () => {
       const mockChildren = screen.getByText("mock");
 
       expect(mockChildren).toBeInTheDocument();
+    });
+  });
+
+  describe("ShowSummaryCard", () => {
+    it("displays the show title, year and type", () => {
+      const title = "mockTitle";
+      const year = "2022";
+      const type = Type.Movie;
+
+      render(
+        <ShowSummaryCard
+          show={{
+            id: "mock",
+            poster: "mock",
+            title,
+            year,
+            type,
+          }}
+        />
+      );
+
+      const titleElement = screen.getByRole("heading", {
+        name: title,
+      });
+      const yearElement = screen.getByText(year);
+      const typeElement = screen.getByText(type);
+
+      expect(titleElement).toBeInTheDocument();
+      expect(yearElement).toBeInTheDocument();
+      expect(typeElement).toBeInTheDocument();
     });
   });
 });
