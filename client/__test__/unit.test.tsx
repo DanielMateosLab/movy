@@ -1,9 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import AppHeader from "components/AppHeader";
 import SearchForm from "components/SearchForm";
+import ShowDetailsCard from "components/ShowDetailsCard";
 import ShowSummariesContainer from "components/ShowSummariesContainer";
 import ShowSummaryCard from "components/ShowSummaryCard";
-import { Type } from "utils/graphqlTypes";
+import { ShowByIdQuery, Type } from "utils/graphqlTypes";
+
+jest.mock("next/dist/client/router", () => ({
+  __esModule: true,
+  useRouter: () => ({
+    query: {
+      title: "mock",
+    },
+  }),
+}));
 
 describe("AppHeader", () => {
   it("renders Movy brand and logo", () => {
