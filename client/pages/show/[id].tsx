@@ -5,6 +5,7 @@ import ShowDetailsCard from "components/ShowDetailsCard";
 import Spinner from "components/Spinner";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { SyntheticEvent } from "react";
 import { ShowByIdQuery } from "utils/graphqlTypes";
 
 const SHOW_BY_ID = gql`
@@ -35,14 +36,37 @@ const ShowPage: NextPage = () => {
     ssr: false,
   });
 
+  function handleGoBack(event: SyntheticEvent) {
+    event.preventDefault();
+
+    router.back();
+  }
+
   return (
-    <Layout>
-      <AppHeader />
+    <>
+      <Layout>
+        <AppHeader>
+          <a href="#" onClick={handleGoBack}>
+            &lt; Back to results
+          </a>
+        </AppHeader>
 
-      {loading && <Spinner />}
+        {loading && <Spinner />}
 
-      {data?.showById && <ShowDetailsCard show={data.showById} />}
-    </Layout>
+        {data?.showById && <ShowDetailsCard show={data.showById} />}
+      </Layout>
+
+      <style jsx>{`
+        a {
+          display: block;
+          text-align: center;
+          color: blue;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      `}</style>
+    </>
   );
 };
 
