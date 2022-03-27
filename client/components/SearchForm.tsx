@@ -17,7 +17,7 @@ const SearchForm: React.FC<Props> = (props) => {
     { title, type },
     { setSubmitting }
   ) => {
-    showsByTitleArgs({ title, type, page: showsByTitleArgs().page });
+    showsByTitleArgs({ title, type, page: 1 });
 
     setSubmitting(false);
   };
@@ -34,39 +34,37 @@ const SearchForm: React.FC<Props> = (props) => {
         validationSchema={searchShowByTitleValidation}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <section className="form">
-              <div className="form-element">
-                <TextField
-                  name="title"
-                  label="Title"
-                  placeholder="Batman begins"
-                />
-              </div>
+        <Form>
+          <section className="form">
+            <div className="form-element">
+              <TextField
+                name="title"
+                label="Title"
+                placeholder="Batman begins"
+              />
+            </div>
 
-              <div className="form-element">
-                <label htmlFor="type">Show Type</label>
-                <Field as="select" name="type" id="type" className="box">
-                  <option value="ALL">All</option>
-                  <option value="MOVIE">Movie</option>
-                  <option value="SERIES">Series</option>
-                  <option value="EPISODE">Episode</option>
-                </Field>
-              </div>
+            <div className="form-element">
+              <label htmlFor="type">Show Type</label>
+              <Field as="select" name="type" id="type" className="box">
+                <option value="ALL">All</option>
+                <option value="MOVIE">Movie</option>
+                <option value="SERIES">Series</option>
+                <option value="EPISODE">Episode</option>
+              </Field>
+            </div>
 
-              <div className="form-element">
-                <Button type="submit" disabled={props.loading}>
-                  Search
-                </Button>
-              </div>
-            </section>
+            <div className="form-element">
+              <Button type="submit" disabled={props.loading}>
+                Search
+              </Button>
+            </div>
+          </section>
 
-            <section className="form-footer">
-              <SearchInfo {...props} />
-            </section>
-          </Form>
-        )}
+          <section className="form-footer">
+            <SearchInfo {...props} />
+          </section>
+        </Form>
       </Formik>
 
       <style global jsx>
