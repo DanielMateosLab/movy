@@ -1,0 +1,13 @@
+query ShowsByTitleSummary($title: String!, $type: Type, $page: Int) {
+  showsByTitle(title: $title, type: $type, page: $page) {
+    result {
+      id
+      type
+      title
+      poster
+      year
+    }
+    totalResults
+    page
+  }
+}

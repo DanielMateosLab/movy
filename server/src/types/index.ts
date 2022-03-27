@@ -56,4 +56,5 @@ export enum ShowType {
   MOVIE = "movie",
   SERIES = "series",
   EPISODE = "episode",
+  ALL = "",
 }

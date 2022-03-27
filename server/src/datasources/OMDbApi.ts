@@ -5,7 +5,11 @@ import {
   GetShowByIdApiResponse,
   SearchShowsByTitleApiResponse,
 } from "../types";
-import { QueryShowByIdArgs, QueryShowsByTitleArgs } from "../types/graphql";
+import {
+  QueryShowByIdArgs,
+  QueryShowsByTitleArgs,
+  Type,
+} from "../types/graphql";
 
 class OMDbApi extends RESTDataSource {
   constructor() {
@@ -14,11 +18,15 @@ class OMDbApi extends RESTDataSource {
     this.baseURL = "http://www.omdbapi.com/";
   }
 
-  async searchShowsByTitle({ title, type, page }: QueryShowsByTitleArgs) {
+  async searchShowsByTitle({
+    title,
+    type = Type.All,
+    page = 1,
+  }: QueryShowsByTitleArgs) {
     const result: SearchShowsByTitleApiResponse = await this.get("", {
       s: title,
-      type: type || "",
-      page: page || 1,
+      page: page as number,
+      type: type as Type,
       apikey: OMDb_API_KEY,
     });
 
@@ -26,7 +34,7 @@ class OMDbApi extends RESTDataSource {
       return {
         result: result.Search,
         totalResults: result.totalResults,
-        page: page || 1,
+        page: page as number,
       };
     }
 
