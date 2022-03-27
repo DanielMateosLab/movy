@@ -1,5 +1,5 @@
 import { Field, Form, Formik, FormikConfig } from "formik";
-import { showsByTitleArgs } from "utils/apolloClient";
+import { useRouter } from "next/router";
 import { ShowsByTitleSummaryQuery, Type } from "utils/graphqlTypes";
 import { SearchFormValues } from "utils/types";
 import { searchShowByTitleValidation } from "utils/validation";
@@ -13,11 +13,24 @@ interface Props {
   data?: ShowsByTitleSummaryQuery;
 }
 const SearchForm: React.FC<Props> = (props) => {
+  const router = useRouter();
+
   const handleSubmit: FormikConfig<SearchFormValues>["onSubmit"] = async (
     { title, type },
     { setSubmitting }
   ) => {
-    showsByTitleArgs({ title, type, page: 1 });
+    router.push(
+      {
+        pathname: "/",
+        query: {
+          title,
+          type,
+          page: 1,
+        },
+      },
+      undefined,
+      { shallow: true }
+    );
 
     setSubmitting(false);
   };

@@ -1,5 +1,5 @@
+import { useRouter } from "next/router";
 import React from "react";
-import { showsByTitleArgs } from "utils/apolloClient";
 import { ShowsByTitleResponse } from "utils/graphqlTypes";
 
 const Pagination: React.FC<
@@ -7,22 +7,33 @@ const Pagination: React.FC<
 > = ({ totalResults, page }) => {
   const isLastPage = page == Math.ceil(totalResults / 10);
 
+  const router = useRouter();
+
+  function updatePageQueryParam(page: number) {
+    router.push(
+      {
+        pathname: "/",
+        query: {
+          title: router.query.title,
+          type: router.query.type,
+          page: page.toString(),
+        },
+      },
+      undefined,
+      { shallow: true }
+    );
+  }
+
   function handleNextPage(event: React.SyntheticEvent) {
     event.preventDefault();
 
-    showsByTitleArgs({
-      ...showsByTitleArgs(),
-      page: page + 1,
-    });
+    updatePageQueryParam(page + 1);
   }
 
   function handlePreviousPage(event: React.SyntheticEvent) {
     event.preventDefault();
 
-    showsByTitleArgs({
-      ...showsByTitleArgs(),
-      page: page - 1,
-    });
+    updatePageQueryParam(page - 1);
   }
 
   return (

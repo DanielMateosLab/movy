@@ -8,6 +8,7 @@ import { showsByTitleArgs } from "utils/apolloClient";
 import { useEffect } from "react";
 import ShowSummariesContainer from "components/ShowSummariesContainer";
 import ShowSummaryCard from "components/ShowSummaryCard";
+import { useRouter } from "next/router";
 
 export const SHOWS_BY_TITLE = gql`
   query ShowsByTitleSummary($title: String!, $type: Type, $page: Int) {
@@ -29,12 +30,25 @@ const Home: NextPage = () => {
   const [searchShowsByTitle, { called, loading, data }] =
     useLazyQuery<ShowsByTitleSummaryQuery>(SHOWS_BY_TITLE, { ssr: false });
 
-  const variables = useReactiveVar(showsByTitleArgs);
+  const router = useRouter();
 
   useEffect(() => {
+    const title =
+      typeof router.query.title == "string" ? router.query.title : undefined;
+
+    const type =
+      typeof router.query.type == "string" ? router.query.type : undefined;
+
+    const page =
+      typeof router.query.page == "string" ? +router.query.page : undefined;
+
     // Avoid searching with an empty title
-    variables.title && searchShowsByTitle({ variables });
-  }, [variables]);
+    if (router.query.title) {
+      searchShowsByTitle({
+        variables: { title, type, page },
+      });
+    }
+  }, [router.query]);
 
   return (
     <Layout>
