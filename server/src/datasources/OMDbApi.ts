@@ -66,7 +66,7 @@ class OMDbApi extends RESTDataSource {
    * and returns it.
    */
   async getPropertyFromParentOrAPI(property: keyof ApiShow, parent: ApiShow) {
-    if (property in parent) return property;
+    if (property in parent) return parent[property];
 
     return (await this.getShowById({ id: parent.imdbID }))![property];
   }
