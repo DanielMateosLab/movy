@@ -1,6 +1,6 @@
 # MOVY
 
-A service to get the details of your favourite apps.
+A service to get the details of your favourite apps. See the live version [here](https://movy-ashen.vercel.app/)!
 
 ## Architecture
 
@@ -10,7 +10,7 @@ A service to get the details of your favourite apps.
     - OMDB Open REST API: external service to search for movies and movie details.
     - Apollo In-Memory LRU or Redis Cache: caching service to save unnecesary calls to OMDB API source.
 
-- Client App: a NextJS & React app that consumes a graphQL API with Apollo Client. It is in the `client/` folder.
+- Client App: a NextJS & React app that consumes a graphQL API with Apollo Client. Ideally it will be served from a CDN in production. It is in the `client/` folder.
   - Features:
     - Search shows by title and type. Searches are tracked with the url query parameters, allowing you to go back and forth using the browser history and to share or save searches using the url.
     - See show details: if you click in a show you will be redirected to a page with more details
@@ -50,6 +50,10 @@ Assuming you have installed heroku CLI and you are logged in:
 - Set the `OMDb_API_KEY` environment variable.
 - Optionally, to use a redis cache, run `heroku addons:create heroku-redis:hobby-dev -a <your-app-name>`. This should set up the redis instance and update the `REDIS_URL` EV for you.
 
+### Client - Vercel
+
+- Using vercel, just create a new project and set the client folder as the entry point.
+
 ## TODO
 
-- Create the client app.
+- Add integration tests for the client.
