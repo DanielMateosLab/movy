@@ -75,7 +75,7 @@ const SearchForm: React.FC<Props> = (props) => {
           </section>
 
           <section className="form-footer">
-            <SearchInfo {...props} />
+            {router.query.title && <SearchInfo {...props} />}
           </section>
         </Form>
       </Formik>

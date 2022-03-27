@@ -58,7 +58,11 @@ const Home: NextPage = () => {
         </AppHeader>
 
         <ShowSummariesContainer loading={loading}>
-          {data && (
+          {
+            // router.query.title flag allows us to clean results by removing url
+            // query parameters
+          }
+          {router.query.title && data && (
             <>
               {data.showsByTitle.result.map(
                 (show) => show && <ShowSummaryCard show={show} key={show.id} />
@@ -67,7 +71,7 @@ const Home: NextPage = () => {
           )}
         </ShowSummariesContainer>
 
-        {data && (
+        {router.query.title && data && (
           <footer>
             <Pagination
               totalResults={data.showsByTitle.totalResults}
