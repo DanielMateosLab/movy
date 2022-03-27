@@ -5,6 +5,8 @@ const Spinner: React.FC = () => (
     <style jsx>
       {`
         .loading {
+          margin: 2rem auto;
+
           width: 4rem;
           height: 4rem;
           border: 0.25rem solid rgba(0, 0, 0, 0.3);

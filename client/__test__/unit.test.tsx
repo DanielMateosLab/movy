@@ -1,9 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import AppHeader from "components/AppHeader";
 import SearchForm from "components/SearchForm";
+import ShowDetailsCard from "components/ShowDetailsCard";
 import ShowSummariesContainer from "components/ShowSummariesContainer";
 import ShowSummaryCard from "components/ShowSummaryCard";
-import { Type } from "utils/graphqlTypes";
+import { ShowByIdQuery, Type } from "utils/graphqlTypes";
+
+jest.mock("next/dist/client/router", () => ({
+  __esModule: true,
+  useRouter: () => ({
+    query: {
+      title: "mock",
+    },
+  }),
+}));
 
 describe("AppHeader", () => {
   it("renders Movy brand and logo", () => {
@@ -170,6 +180,36 @@ describe("SearchForm", () => {
       expect(titleElement).toBeInTheDocument();
       expect(yearElement).toBeInTheDocument();
       expect(typeElement).toBeInTheDocument();
+    });
+  });
+
+  describe("ShowDetailsCard", () => {
+    const show: NonNullable<ShowByIdQuery["showById"]> = {
+      __typename: "Show",
+      poster: "mockImage",
+      title: "Mock Title",
+      type: Type.Movie,
+      year: "2005",
+      plot: "Mock Plot",
+      genre: "Mock Genre",
+      actors: "Mock Actors",
+      director: "Mock Director",
+      writer: "Mock Writer",
+      awards: "Mock Awards",
+    };
+
+    render(<ShowDetailsCard show={show} />);
+
+    const { poster, __typename, ...details } = show;
+
+    const posterImage = screen.getByRole("img", {
+      name: "show poster",
+    });
+
+    expect(posterImage).toBeInTheDocument();
+
+    Object.values(details).forEach((detail) => {
+      expect(screen.getByText(detail)).toBeInTheDocument();
     });
   });
 });

@@ -1,14 +1,20 @@
+import Link from "next/link";
 import { ShowSummary } from "utils/types";
 
 const ShowSummaryCard: React.FC<{ show: ShowSummary }> = ({ show }) => {
   return (
-    <article>
-      <header className="layer">
-        <h2>{show.title}</h2>
-        <span className="year">{show.year}</span>
-      </header>
+    <>
+      <Link href={"show/" + show.id}>
+        <article role="link">
+          <header className="layer">
+            <h2>{show.title}</h2>
+            <span className="year">{show.year}</span>
+          </header>
 
-      <span className="show-type layer">{show.type}</span>
+          <span className="show-type layer">{show.type}</span>
+        </article>
+      </Link>
+
       <style jsx>
         {`
           article {
@@ -18,6 +24,7 @@ const ShowSummaryCard: React.FC<{ show: ShowSummary }> = ({ show }) => {
             height: 500px;
             border: 1px solid black;
             border-radius: 4px;
+            cursor: pointer;
           }
 
           .layer {
@@ -49,7 +56,7 @@ const ShowSummaryCard: React.FC<{ show: ShowSummary }> = ({ show }) => {
           }
         `}
       </style>
-    </article>
+    </>
   );
 };
 
