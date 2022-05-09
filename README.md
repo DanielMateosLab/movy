@@ -1,6 +1,6 @@
 # MOVY
 
-A service to get the details of your favourite apps. See the live version [here](https://movy-ashen.vercel.app/)!
+An app to get details of your favourite TV shows. See the live version [here](https://movy-ashen.vercel.app/)!
 
 ## Architecture
 
