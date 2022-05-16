@@ -1,6 +1,6 @@
 # MOVY
 
-An app to get details of your favourite TV shows. See the live version [here](https://movy-ashen.vercel.app/)!
+An app to get details of your favorite TV shows. See the live version [here](https://movy-ashen.vercel.app/)!
 
 ## Architecture
 
@@ -8,14 +8,14 @@ An app to get details of your favourite TV shows. See the live version [here](ht
 
   - Data sources:
     - OMDB Open REST API: external service to search for movies and movie details.
-    - Apollo In-Memory LRU or Redis Cache: caching service to save unnecesary calls to OMDB API source. Cached results have a max. age of 24 hours.
+    - Apollo In-Memory LRU or Redis Cache: caching service to save unnecessary calls to OMDB API source. Cached results have a max. age of 24 hours.
 
 - Client App: a NextJS & React app that consumes a graphQL API with Apollo Client. Ideally it will be served from a CDN in production. It is in the `client/` folder.
   - Features:
     - Search shows by title and type. Searches are tracked with the url query parameters, allowing you to go back and forth using the browser history and to share or save searches using the url.
     - See show details: if you click in a show you will be redirected to a page with more details
       of the given show.
-  - Read instructions: to have a look at the code I recommend going to `pages/index` and `pages/show/[id]`. They are the entrypoints of the app and from there you can dive deeper and understand everything.
+  - Read instructions: to have a look at the code I recommend going to `pages/index` and `pages/show/[id]`. They are the entry points of the app and from there you can dive deeper and understand everything.
 
 ## Developer Set Up Instructions
 
@@ -23,14 +23,14 @@ An app to get details of your favourite TV shows. See the live version [here](ht
 
 2. Open a terminal in the `server` directory and run `npm install && npm run dev`. This will start the server in port 4000. This uses Apollo LRU in-memory cache. To set up caching with redis read [here](#Redis).
 3. Open a terminal in the `client` directory.
-4. Copy the `.env.example` file into `.env.local`. With linux you can use `cp .env.example .env.loval`
+4. Copy the `.env.example` file into `.env.local`. With linux you can use `cp .env.example .env.local`
 5. Install necessary packages and start the server with `npm install && npm run dev`.
 
 ### Redis
 
 If you want to use a redis cache, you must provide a `REDIS_URL` EV in the dotenv file. If you have docker installed use `redis://127.0.0.1:6379` and run `npm run dev:redis`.
 
-### Sidenotes
+### Side-notes
 
 - There are jest tests in both client and server. To run them use `npm test` in both the client and the server folders.
 - I used `@graphql-codegen` to generate types out of the schema. You can re-generate them
