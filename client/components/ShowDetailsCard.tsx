@@ -101,9 +101,18 @@ const Item: React.FC<{ name: string; value: string }> = ({ name, value }) => (
           padding: 0.5rem 0;
           border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         }
+        li:last-child {
+          border-bottom: none;
+        }
         li:hover {
           font-weight: bold;
         }
+        @media (min-width: 768px) {
+          li:nth-child(5) {
+            border-bottom: none;
+          }
+        }
+
         .name {
           margin-right: 2rem;
         }
